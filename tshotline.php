@@ -33,6 +33,8 @@ function ts_settings_page() {
         <th scope="row">Hotline</th>
         <td><input type="text" name="ts_hotline" value="<?php echo get_option('ts_hotline'); ?>" /></td>
         </tr>
+        <p>Hướng dẫn sử dụng đoạn mã để chèn số hotline vào vị trí cần chèn</p>
+        <p>Bạn vui lòng copy: [short_hotline] sau đó chèn vào nội dung bài muốn thêm số điện thoại hotline</p>
     </table>
     <?php submit_button(); ?>
 </form>
@@ -80,4 +82,9 @@ function ts_hotline_template() {
 }
 add_action( 'wp_footer', 'ts_hotline_template' );
 
+function ts_hotline_short(){
+	$string = '<a href="tel:'.get_option('ts_hotline').'">'.get_option('ts_hotline').'</a>';
+	return $string;
+}
+add_shortcode('short_hotline','ts_hotline_short');
 ?>
